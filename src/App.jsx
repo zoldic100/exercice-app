@@ -6,12 +6,14 @@ import { ExerciseDetail, Home } from "./pages";
 
 function App() {
   return (
+    
     <Box
       width="400px"
       margin={"auto"}
       sx={{ width: { xl: "1488px" } }}
       m="auto"
     >
+
       <NavBar />
       
         <Routes>
@@ -22,6 +24,7 @@ function App() {
 
       <h1 className="text-xl font-bold underline">Hello world!</h1>
     </Box>
+    
   );
 }
 

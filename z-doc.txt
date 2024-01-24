@@ -3,4 +3,7 @@ dependencies{
     npm i react-router
     npm i react-router-dom
     npm i react-icons
+npm install react-slick --save
+
+npm install slick-carousel --save
 }
