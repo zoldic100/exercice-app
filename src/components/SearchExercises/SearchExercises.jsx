@@ -1,36 +1,38 @@
 import { Stack, TextField, Box, Button } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { fetchData, exerciseOptions } from "../../utils/fetchData";
 import {HorizontalScrollBar} from '../../components'
+import { BodyPartContext } from "../../pages/Home/Home";
 
 
 const SearchExercises = () => {
- 
+const {setExercices} = useContext(BodyPartContext) 
   const url =
-    "https://exercisedb.p.rapidapi.com/exercises/bodyPart/back?limit=10";
+    'https://wger.de/api/v2/exercise';
   const CategoriesUrl =
-    "https://exercisedb.p.rapidapi.com/exercises/bodyPartList";
+  'https://wger.de/api/v2/exercisecategory/';
   const [search, setSearch] = useState("");
   const [bodyParts, setBodyParts] = useState([]);
   useEffect(() => {
     const fetchExercicesData = async () => {
-      const bodyPartsData = await fetchData(CategoriesUrl, exerciseOptions);
-        
-      setBodyParts(["all", ...bodyPartsData]);
+      const {results} = await fetchData(CategoriesUrl, exerciseOptions);
+      const names = results.map(result => result.name);
+
+ 
+      setBodyParts(["all", ...names]);
     };
 
     fetchExercicesData()
   }, []);
   const hundleSearch = async () => {
     if (search) {
-      const exercicesData = await fetchData(url, exerciseOptions);
+      const {results} = await fetchData(url, exerciseOptions);
 
-      const searchedExercices = exercicesData.filter(
+      const searchedExercices = results.filter(
         (exercise) =>
-          exercise.name.toLowerCase().includs(search) ||
-          exercise.bodyPart.toLowerCase().includs(search) ||
-          exercise.equipement.toLowerCase().includs(search) ||
-          exercise.target.toLowerCase().includs(search)
+        exercise.name.toLowerCase().includes(search.toLowerCase()) ||
+        exercise.description.toLowerCase().includes(search.toLowerCase())
+
       );
       setSearch("");
       setExercices(searchedExercices);

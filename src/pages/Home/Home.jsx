@@ -7,19 +7,11 @@ const Home = () => {
   const [bodyPart, setBodyPart] = useState("all");
   const [exercises, setExercises] = useState([]);
   return (
-    <BodyPartContext.Provider value={{bodyPart,setExercises,setBodyPart}}>
+    <BodyPartContext.Provider value={{bodyPart,setExercises,setBodyPart,exercises}}>
     <Box>
       <HeroBanner />
-      <SearchExercises
-        setExercises={setExercises}
-        bodyPart={bodyPart}
-        setBodyPart={setBodyPart}
-      />
-      <Exercises
-        setExercises={setExercises}
-        bodyPart={bodyPart}
-        setBodyPart={setBodyPart}
-      />
+      <SearchExercises/>
+      <Exercises/>
     </Box>
     </BodyPartContext.Provider>
   );
