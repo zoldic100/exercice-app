@@ -7,8 +7,10 @@ const Home = () => {
   const [bodyPart, setBodyPart] = useState("all");
   const [exercises, setExercises] = useState([]);
   const [test ,setTest] = useState('')
+  const url = "https://wger.de/api/v2/exerciseinfo";
+
   return (
-    <BodyPartContext.Provider value={{bodyPart,setExercises,setBodyPart,exercises, test,setTest}}>
+    <BodyPartContext.Provider value={{url,bodyPart,setExercises,setBodyPart,exercises, test,setTest}}>
     <Box>
       <HeroBanner />
       <SearchExercises/>

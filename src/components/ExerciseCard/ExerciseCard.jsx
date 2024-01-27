@@ -5,11 +5,12 @@ import { Stack, Button } from "@mui/material";
 
 const ExerciseCard = ({ exercise, key }) => {
   return (
-    <Link className="exercise-card" to={`exercice/${exercise.id}`}>
+    <div key={key}>
+    <Link  className="exercise-card" to={`exercice/${exercise.id}`}>
       {exercise.images[0] ? (
-        <img src={exercise.images[0].image} alt="" srcset="" loading="lazy" />
+        <img src={exercise.images[0].image} alt=""  loading="lazy" />
       ) : (
-        <img src={exerciseImg} alt="" srcset="" loading="lazy" />
+        <img src={exerciseImg} alt="" loading="lazy" />
       )}
       <Stack direction={"row"}>
         <Button 
@@ -23,6 +24,7 @@ const ExerciseCard = ({ exercise, key }) => {
       {exercise.name}
       </p>
     </Link>
+    </div>
   );
 };
 

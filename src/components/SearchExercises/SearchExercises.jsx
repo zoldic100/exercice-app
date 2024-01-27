@@ -5,10 +5,9 @@ import { HorizontalScrollBar } from "../../components";
 import { BodyPartContext } from "../../pages/Home/Home";
 
 const SearchExercises = () => {
-  const { setExercises, exercises,  } = useContext(BodyPartContext);
+  const { setExercises,url } = useContext(BodyPartContext);
 
 
-  const url = "https://wger.de/api/v2/exerciseinfo";
   const CategoriesUrl = "https://wger.de/api/v2/exercisecategory/";
   const [search, setSearch] = useState("");
   const [bodyParts, setBodyParts] = useState([]);
@@ -34,7 +33,7 @@ const SearchExercises = () => {
       const names = searchedExercices.map((result) => result);
 
       setExercises(names);
-      console.log(names);
+      window.scrollTo({top:1800 , behavior:'smooth'})
     }
   };
   return (
