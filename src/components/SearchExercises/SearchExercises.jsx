@@ -1,41 +1,40 @@
 import { Stack, TextField, Box, Button } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { fetchData, exerciseOptions } from "../../utils/fetchData";
-import {HorizontalScrollBar} from '../../components'
+import { HorizontalScrollBar } from "../../components";
 import { BodyPartContext } from "../../pages/Home/Home";
 
-
 const SearchExercises = () => {
-const {setExercices} = useContext(BodyPartContext) 
-  const url =
-    'https://wger.de/api/v2/exercise';
-  const CategoriesUrl =
-  'https://wger.de/api/v2/exercisecategory/';
+  const { setExercises, exercises,  } = useContext(BodyPartContext);
+
+
+  const url = "https://wger.de/api/v2/exerciseinfo";
+  const CategoriesUrl = "https://wger.de/api/v2/exercisecategory/";
   const [search, setSearch] = useState("");
   const [bodyParts, setBodyParts] = useState([]);
   useEffect(() => {
     const fetchExercicesData = async () => {
-      const {results} = await fetchData(CategoriesUrl, exerciseOptions);
-      const names = results.map(result => result.name);
+      const { results } = await fetchData(CategoriesUrl, exerciseOptions);
+      const names = results.map((result) => result.name);
 
- 
       setBodyParts(["all", ...names]);
     };
 
-    fetchExercicesData()
+    fetchExercicesData();
   }, []);
   const hundleSearch = async () => {
     if (search) {
-      const {results} = await fetchData(url, exerciseOptions);
+      const { results } = await fetchData(url, exerciseOptions);
 
       const searchedExercices = results.filter(
         (exercise) =>
-        exercise.name.toLowerCase().includes(search.toLowerCase()) ||
-        exercise.description.toLowerCase().includes(search.toLowerCase())
-
+          exercise.category.name.toLowerCase().includes(search.toLowerCase()) ||
+          exercise.description.toLowerCase().includes(search.toLowerCase())
       );
-      setSearch("");
-      setExercices(searchedExercices);
+      const names = searchedExercices.map((result) => result);
+
+      setExercises(names);
+      console.log(names);
     }
   };
   return (
@@ -48,6 +47,7 @@ const {setExercices} = useContext(BodyPartContext)
       <div className="mb-8 text-center text-5xl font-semibold">
         Awsome Exercices You <br /> should know
       </div>
+      
       <Box position={"relative"} mb={"72px"}>
         <TextField
           sx={{
@@ -60,11 +60,10 @@ const {setExercices} = useContext(BodyPartContext)
           placeholder="shearch for exercise"
           type="text"
           onChange={(e) => {
-            setSearch(e.target.value.toLocaleLowerCase());
+            setSearch(e.target.value);
           }}
         />
         <Button
-        
           variant="contained"
           color="error"
           sx={{
@@ -79,7 +78,7 @@ const {setExercices} = useContext(BodyPartContext)
         </Button>
       </Box>
       <Box sx={{ position: "relative", width: "100%", p: "20px" }}>
-        <HorizontalScrollBar data={bodyParts}  />
+        <HorizontalScrollBar data={bodyParts} />
       </Box>
     </Stack>
   );
