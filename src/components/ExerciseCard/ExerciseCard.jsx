@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import exerciseImg from "../../assets/images/exerciseImg.gif";
 import { Stack, Button } from "@mui/material";
+import { BodyPartContext } from "../../pages/Home/Home";
 
-const ExerciseCard = ({ exercise, key }) => {
+
+const ExerciseCard = ({ exercise }) => {
+  const context = useContext(BodyPartContext);
+
   return (
-    <div key={key}>
-    <Link  className="exercise-card" to={`exercice/${exercise.id}`}>
+    
+    <Link  className="exercise-card" to={`exercise/${exercise.id}`}>
       {exercise.images[0] ? (
         <img src={exercise.images[0].image} alt=""  loading="lazy" />
       ) : (
@@ -24,7 +28,6 @@ const ExerciseCard = ({ exercise, key }) => {
       {exercise.name}
       </p>
     </Link>
-    </div>
   );
 };
 

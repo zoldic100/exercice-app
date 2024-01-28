@@ -7,7 +7,7 @@ const Home = () => {
   const [bodyPart, setBodyPart] = useState("all");
   const [exercises, setExercises] = useState([]);
   const [test ,setTest] = useState('')
-  const url = "https://wger.de/api/v2/exerciseinfo";
+  const url = "https://wger.de/api/v2/exerciseinfo/?limit=1000";
 
   return (
     <BodyPartContext.Provider value={{url,bodyPart,setExercises,setBodyPart,exercises, test,setTest}}>
