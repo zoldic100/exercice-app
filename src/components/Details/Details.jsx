@@ -2,6 +2,9 @@ import { useEffect } from "react";
 import React from "react";
 import exerciseImg from "../../assets/images/exerciseImg.gif";
 import { Stack } from "@mui/material";
+
+
+
 const Details = ({ data }) => {
   const { name, description, category, muscles, images } = data;
   const categoryName = category ? category.name : null;

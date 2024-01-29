@@ -20,7 +20,8 @@
     "react-router": "^6.21.3",
     "react-router-dom": "^6.21.3",
     "react-slick": "^0.29.0",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "youtube-search-api": "^1.2.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
